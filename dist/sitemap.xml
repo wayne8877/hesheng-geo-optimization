@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://hesheng-buttons.com/</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://hesheng-buttons.com/images/hero/hero-bg.webp</image:loc>
+      <image:title>HESHENG Button Factory - Premium Resin Button Manufacturing</image:title>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hesheng-buttons.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://hesheng-buttons.com/?lang=ZH" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://hesheng-buttons.com/?lang=ES" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://hesheng-buttons.com/?lang=JA" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://hesheng-buttons.com/?lang=KO" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://hesheng-buttons.com/?lang=FR" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://hesheng-buttons.com/" />
+  </url>
+
+  <url>
+    <loc>https://hesheng-buttons.com/?lang=ZH</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://hesheng-buttons.com/?lang=ES</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://hesheng-buttons.com/?lang=JA</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://hesheng-buttons.com/?lang=KO</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://hesheng-buttons.com/?lang=FR</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://hesheng-buttons.com/llms.txt</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>
