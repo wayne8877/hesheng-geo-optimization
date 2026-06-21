@@ -264,7 +264,7 @@ const SEO: React.FC = () => {
       <meta property="og:title" content={currentMeta.title} />
       <meta property="og:description" content={currentMeta.description} />
       <meta property="og:url" content={currentUrl} />
-      <meta property="og:locale" content={currentLang.code} />
+      <meta property="og:locale" content={({ EN: "en_US", ZH: "zh_HK", ES: "es_ES", JA: "ja_JP", KO: "ko_KR", FR: "fr_FR" } as Record<string, string>)[currentLang.code] || "en_US"} />
       <meta property="og:image" content="https://hesheng-buttons.com/images/hero/hero-bg.webp" />
       <meta property="og:image:secure_url" content="https://hesheng-buttons.com/images/hero/hero-bg.webp" />
       <meta property="og:image:width" content="1920" />
