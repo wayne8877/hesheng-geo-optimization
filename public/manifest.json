@@ -1,0 +1,20 @@
+{
+  "name": "HESHENG Button Factory",
+  "short_name": "HESHENG",
+  "description": "Premium Resin Button OEM/ODM Manufacturer - 18 Years of Excellence",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F2EC",
+  "theme_color": "#C9A961",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "lang": "en",
+  "scope": "/"
+}

@@ -1,3 +1,121 @@
+# HESHENG Button Factory - robots.txt
+# V2.6 GEO Optimization - 2026-06-21
+# Strategy: Allow all legitimate crawlers, including AI training & retrieval bots.
+
+# === Default ===
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*?*session=
+Crawl-delay: 1
+
+# === Sitemap ===
 Sitemap: https://hesheng-buttons.com/sitemap.xml
+Sitemap: https://hesheng-buttons.com/llms.txt
+
+# === AI Search & Retrieval Bots (GEO critical) ===
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# Google AI
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Common Crawl (used by most LLMs for training data)
+User-agent: CCBot
+Allow: /
+
+# Apple
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# ByteDance (Doubao / TikTok)
+User-agent: Bytespider
+Allow: /
+
+User-agent: Doubao
+Allow: /
+
+# Amazon (Alexa / Rufus / Q)
+User-agent: Amazonbot
+Allow: /
+
+# Microsoft (Bing + Copilot)
+User-agent: Bingbot
+Allow: /
+
+User-agent: MSNBot-Media
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckAssistBot
+Allow: /
+
+# === Traditional SEO Bots ===
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /

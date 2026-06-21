@@ -79,21 +79,48 @@ const SEO: React.FC = () => {
 
   return (
     <Helmet>
+      {/* === Core meta === */}
       <title>{currentMeta.title}</title>
       <meta name="description" content={currentMeta.description} />
-      <html lang={currentLang.code.toLowerCase()} />
+      <meta name="keywords" content="Resin Buttons, Polyester Buttons, UPR Buttons, Button Manufacturer China, GRS Buttons, OEKO-TEX Buttons, OEM ODM Button Factory, Guangdong Button Factory" />
+      <meta name="author" content="HESHENG Button Factory" />
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <meta name="theme-color" content="#C9A961" />
+      <meta name="format-detection" content="telephone=no" />
+      <html lang={currentLang.code === 'ZH' ? 'zh-Hant' : currentLang.code.toLowerCase()} />
       <link rel="canonical" href={currentUrl} />
 
+      {/* === Favicon (V2.6) === */}
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon.svg" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+
+      {/* === hreflang (6 languages + x-default) === */}
       {hreflangs.map((hl) => (
         <link key={hl.lang} rel="alternate" hrefLang={hl.lang} href={hl.url} />
       ))}
 
+      {/* === Open Graph (完整) === */}
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="HESHENG Button Factory" />
       <meta property="og:title" content={currentMeta.title} />
       <meta property="og:description" content={currentMeta.description} />
       <meta property="og:url" content={currentUrl} />
       <meta property="og:locale" content={currentLang.code} />
+      <meta property="og:image" content="https://hesheng-buttons.com/images/hero/hero-bg.webp" />
+      <meta property="og:image:secure_url" content="https://hesheng-buttons.com/images/hero/hero-bg.webp" />
+      <meta property="og:image:width" content="1920" />
+      <meta property="og:image:height" content="1080" />
+      <meta property="og:image:alt" content="HESHENG Button Factory - Premium Resin Button Manufacturing" />
 
-      {/* 动态注入 JSON-LD */}
+      {/* === Twitter Card (完整) === */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={currentMeta.title} />
+      <meta name="twitter:description" content={currentMeta.description} />
+      <meta name="twitter:image" content="https://hesheng-buttons.com/images/hero/hero-bg.webp" />
+      <meta name="twitter:image:alt" content="HESHENG Button Factory - Premium Resin Button Manufacturing" />
+
+      {/* === 动态注入 JSON-LD === */}
       <script type="application/ld+json">
         {JSON.stringify(schemaData)}
       </script>
