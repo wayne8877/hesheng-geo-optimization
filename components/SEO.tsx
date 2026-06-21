@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../LanguageContext';
 import { Helmet } from 'react-helmet-async';
+import { FEATURED_PRODUCTS } from '../data/catalog';
 
 const SEO: React.FC = () => {
   const { currentLang } = useLanguage();
@@ -48,23 +49,180 @@ const SEO: React.FC = () => {
   const currentMeta = metadata[currentLang.code as keyof typeof metadata] || metadata.EN;
   const currentUrl = `${BASE_URL}/${currentMeta.path}`;
 
-  // 动态 JSON-LD 结构化数据
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "ManufacturingPlant",
-    "name": currentLang.code === 'ZH' ? "和生钮扣厂" : "HESHENG Button Factory",
-    "alternateName": "和生鈕扣",
-    "description": currentMeta.description,
-    "url": currentUrl,
-    "logo": `${BASE_URL}/images/brand/hs-logo.webp`,
+  // === JSON-LD 增强（V2.6）：5 核心 schema + 10 featured products ===
+  const brandName = currentLang.code === 'ZH' ? "和生钮扣厂" : "HESHENG Button Factory";
+  const brandLogo = `${BASE_URL}/images/brand/hs-logo.webp`;
+  const heroImage = `${BASE_URL}/images/hero/hero-bg.webp`;
+
+  // 1) Organization - 总部/品牌身份
+  const organizationSchema = {
+    "@type": "Organization",
+    "@id": `${BASE_URL}#organization`,
+    "name": brandName,
+    "alternateName": ["和生鈕扣", "HESHENG", "HESHENG Button Factory"],
+    "url": BASE_URL,
+    "logo": brandLogo,
+    "image": brandLogo,
     "foundingDate": "2007",
+    "description": currentMeta.description,
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "No.36 Fengming Road, Fengdeling, Fenggang Town",
       "addressRegion": currentMeta.address.region,
       "addressLocality": currentMeta.address.locality,
-      "addressCountry": currentMeta.address.country
+      "addressCountry": currentMeta.address.country,
+      "postalCode": "523692"
     },
-    "certification": ["GRS", "OEKO-TEX Standard 100"]
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "url": `${BASE_URL}/?lang=${currentLang.code}#inquiry`,
+      "availableLanguage": ["English", "Chinese", "Spanish", "Japanese", "Korean", "French"]
+    }],
+    "sameAs": [
+      "https://www.facebook.com/hesheng.button",
+      "https://www.instagram.com/heshengbotton",
+      "https://x.com/liwi32650928",
+      "https://www.xiaohongshu.com/user/profile/5f940936000000000101dc00"
+    ]
+  };
+
+  // 2) WebSite - 站点信息 + 多语言
+  const websiteSchema = {
+    "@type": "WebSite",
+    "@id": `${BASE_URL}#website`,
+    "name": brandName,
+    "url": BASE_URL,
+    "inLanguage": ["en", "zh-Hant", "es", "ja", "ko", "fr"],
+    "publisher": { "@id": `${BASE_URL}#organization` }
+  };
+
+  // 3) ManufacturingPlant - 工厂实体 (替换原 schema)
+  const manufacturingSchema = {
+    "@type": ["ManufacturingPlant", "LocalBusiness"],
+    "@id": `${BASE_URL}#factory`,
+    "name": brandName,
+    "alternateName": "HESHENG Button Factory",
+    "description": currentMeta.description,
+    "url": currentUrl,
+    "logo": brandLogo,
+    "image": heroImage,
+    "foundingDate": "2007",
+    "numberOfEmployees": "200+",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "No.36 Fengming Road, Fengdeling, Fenggang Town",
+      "addressRegion": currentMeta.address.region,
+      "addressLocality": currentMeta.address.locality,
+      "addressCountry": currentMeta.address.country,
+      "postalCode": "523692"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "22.7464",
+      "longitude": "114.1396"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "07:00",
+      "closes": "21:00"
+    }],
+    "parentOrganization": { "@id": `${BASE_URL}#organization` },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Resin Button Catalog",
+      "itemListElement": FEATURED_PRODUCTS.map(p => ({
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": p.title,
+          "category": p.category,
+          "image": `${BASE_URL}${p.image}`,
+          "sku": p.id
+        }
+      }))
+    }
+  };
+
+  // 4) FAQPage - 常见问题（基于行业真实买家疑问）
+  const faqSchema = {
+    "@type": "FAQPage",
+    "@id": `${BASE_URL}#faq`,
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the minimum order quantity (MOQ) for custom buttons?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard MOQ is 1,000 pieces per design. For custom molds, MOQ is 5,000 pieces. Trial orders of 500 pieces are negotiable for new clients."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does sample production take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In-house CNC prototyping delivers samples within 24-48 hours. Custom-developed samples with new molds take 5-7 working days."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which international certifications do you hold?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GRS (Global Recycled Standard), OEKO-TEX Standard 100, and Higg Index. All certifications are renewable annually with current documentation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the daily production capacity?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "500,000 buttons per day across all product lines. Monthly capacity reaches 15 million buttons with consistent quality standards."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you support custom color matching?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. DataColor® 800 spectrophotometer lab delivers Delta-E < 0.5 color accuracy using 3-stage verification: raw material pre-check, in-process sampling, and final inspection."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the lead time for bulk orders?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard bulk orders ship within 7-15 working days after sample confirmation. Express 5-day production is available for urgent orders with 15% surcharge."
+        }
+      }
+    ]
+  };
+
+  // 5) BreadcrumbList - 页面结构
+  const breadcrumbSchema = {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": BASE_URL },
+      { "@type": "ListItem", "position": 2, "name": "Products", "item": `${BASE_URL}#products` },
+      { "@type": "ListItem", "position": 3, "name": "About", "item": `${BASE_URL}#about` },
+      { "@type": "ListItem", "position": 4, "name": "Process", "item": `${BASE_URL}#process` },
+      { "@type": "ListItem", "position": 5, "name": "Partners", "item": `${BASE_URL}#partners` }
+    ]
+  };
+
+  // 用 @graph 打包，单 script tag 注入
+  const schemaGraph = {
+    "@context": "https://schema.org",
+    "@graph": [
+      organizationSchema,
+      websiteSchema,
+      manufacturingSchema,
+      faqSchema,
+      breadcrumbSchema
+    ]
   };
 
   const hreflangs = [
@@ -120,9 +278,9 @@ const SEO: React.FC = () => {
       <meta name="twitter:image" content="https://hesheng-buttons.com/images/hero/hero-bg.webp" />
       <meta name="twitter:image:alt" content="HESHENG Button Factory - Premium Resin Button Manufacturing" />
 
-      {/* === 动态注入 JSON-LD === */}
+      {/* === 动态注入 JSON-LD (@graph 打包 5 schema) === */}
       <script type="application/ld+json">
-        {JSON.stringify(schemaData)}
+        {JSON.stringify(schemaGraph)}
       </script>
     </Helmet>
   );

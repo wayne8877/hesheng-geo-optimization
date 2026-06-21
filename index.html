@@ -20,6 +20,45 @@
 
     <!-- V2.6 GEO - AI Search Engine Discovery -->
     <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable site info">
+
+    <!-- V2.6 GEO - Static fallback JSON-LD (SPA 首屏兜底，SEO.tsx 启动后会注入动态多语言版) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["Organization", "ManufacturingPlant"],
+      "name": "HESHENG Button Factory",
+      "alternateName": ["和生钮扣厂", "HESHENG"],
+      "url": "https://hesheng-buttons.com",
+      "logo": "https://hesheng-buttons.com/images/brand/hs-logo.webp",
+      "foundingDate": "2007",
+      "description": "Guangdong's Leading Factory: 18 Years of Excellence in Unsaturated Polyester Resin (UPR) Button Manufacturing. GRS & OEKO-TEX Certified. Wholesale & Custom Development.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "No.36 Fengming Road, Fengdeling, Fenggang Town",
+        "addressRegion": "Guangdong",
+        "addressLocality": "Dongguan",
+        "addressCountry": "CN",
+        "postalCode": "523692"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "22.7464",
+        "longitude": "114.1396"
+      },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "07:00",
+        "closes": "21:00"
+      }],
+      "sameAs": [
+        "https://www.facebook.com/hesheng.button",
+        "https://www.instagram.com/heshengbotton",
+        "https://x.com/liwi32650928",
+        "https://www.xiaohongshu.com/user/profile/5f940936000000000101dc00"
+      ]
+    }
+    </script>
     
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
